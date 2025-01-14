@@ -46,13 +46,18 @@ export class DashboardComponent implements OnInit {
 
   editStudent(student: Student) {
     this.isAddingOrEditing = true;
-    this.editingStudent = student;
+    this.editingStudent = { ...student };
     this.currentStudent = { ...student };
+    // Store the original student for comparison
+    this.studentService.setOriginalStudent(student);
   }
 
   saveStudent() {
     if (this.editingStudent) {
-      this.studentService.updateStudent(this.currentStudent);
+      if (!this.studentService.updateStudent(this.currentStudent)) {
+        alert('A student with this name already exists!');
+        return;
+      }
     } else {
       if (!this.studentService.addStudent(this.currentStudent)) {
         alert('A student with this name already exists!');

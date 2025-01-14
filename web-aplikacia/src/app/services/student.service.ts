@@ -1,13 +1,3 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class StudentService {
-
-//   constructor() { }
-// }
-
 // src/app/services/student.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -63,16 +53,30 @@ export class StudentService {
   updateStudent(updatedStudent: Student): boolean {
     const currentStudents = this.students.value;
     const index = currentStudents.findIndex(s => 
-      s.firstName === updatedStudent.firstName && 
-      s.lastName === updatedStudent.lastName
+      // Don't compare with the edited student itself
+      s !== this.findStudentByName(updatedStudent.firstName, updatedStudent.lastName) &&
+      s.firstName.toLowerCase() === updatedStudent.firstName.toLowerCase() && 
+      s.lastName.toLowerCase() === updatedStudent.lastName.toLowerCase()
     );
 
-    if (index === -1) return false;
+    // If we found a duplicate (excluding the current student), return false
+    if (index !== -1) {
+      return false;
+    }
+
+    // Find the student to update
+    const studentIndex = currentStudents.findIndex(s => 
+      s.firstName === this.originalStudent?.firstName && 
+      s.lastName === this.originalStudent?.lastName
+    );
+
+    if (studentIndex === -1) return false;
 
     updatedStudent.lastEdit = new Date();
     const newStudents = [...currentStudents];
-    newStudents[index] = updatedStudent;
+    newStudents[studentIndex] = updatedStudent;
     this.students.next(newStudents);
+    this.originalStudent = null;
     return true;
   }
 
@@ -89,5 +93,19 @@ export class StudentService {
       s.firstName.toLowerCase() === firstName.toLowerCase() && 
       s.lastName.toLowerCase() === lastName.toLowerCase()
     );
+  }
+
+  // Add these new properties and methods
+  private originalStudent: Student | null = null;
+
+  setOriginalStudent(student: Student) {
+    this.originalStudent = { ...student };
+  }
+
+  findStudentByName(firstName: string, lastName: string): Student | null {
+    return this.students.value.find(s => 
+      s.firstName === firstName && 
+      s.lastName === lastName
+    ) || null;
   }
 }
