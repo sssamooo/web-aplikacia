@@ -1,4 +1,3 @@
-// src/app/services/student.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Student, INITIAL_STUDENTS } from '../models/student.types';
@@ -39,8 +38,6 @@ export class StudentService {
 
   addStudent(student: Student): boolean {
     const currentStudents = this.students.value;
-    
-    // Check for duplicate name combination
     if (this.isDuplicateName(student.firstName, student.lastName)) {
       return false;
     }
@@ -53,18 +50,15 @@ export class StudentService {
   updateStudent(updatedStudent: Student): boolean {
     const currentStudents = this.students.value;
     const index = currentStudents.findIndex(s => 
-      // Don't compare with the edited student itself
       s !== this.findStudentByName(updatedStudent.firstName, updatedStudent.lastName) &&
       s.firstName.toLowerCase() === updatedStudent.firstName.toLowerCase() && 
       s.lastName.toLowerCase() === updatedStudent.lastName.toLowerCase()
     );
 
-    // If we found a duplicate (excluding the current student), return false
     if (index !== -1) {
       return false;
     }
 
-    // Find the student to update
     const studentIndex = currentStudents.findIndex(s => 
       s.firstName === this.originalStudent?.firstName && 
       s.lastName === this.originalStudent?.lastName
@@ -95,7 +89,6 @@ export class StudentService {
     );
   }
 
-  // Add these new properties and methods
   private originalStudent: Student | null = null;
 
   setOriginalStudent(student: Student) {

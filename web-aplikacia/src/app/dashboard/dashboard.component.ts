@@ -48,19 +48,19 @@ export class DashboardComponent implements OnInit {
     this.isAddingOrEditing = true;
     this.editingStudent = { ...student };
     this.currentStudent = { ...student };
-    // Store the original student for comparison
+   
     this.studentService.setOriginalStudent(student);
   }
 
   saveStudent() {
     if (this.editingStudent) {
       if (!this.studentService.updateStudent(this.currentStudent)) {
-        alert('A student with this name already exists!');
+        alert('Študent s týmto menom už existuje!');
         return;
       }
     } else {
       if (!this.studentService.addStudent(this.currentStudent)) {
-        alert('A student with this name already exists!');
+        alert('Študent s týmto menom už existuje!');
         return;
       }
     }
@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteStudent(student: Student) {
-    if (confirm('Are you sure you want to delete this student?')) {
+    if (confirm('Naozaj chcete vymazať študenta ' + student.firstName + ' ' + student.lastName + '?')) {
       this.studentService.deleteStudent(student.firstName, student.lastName);
     }
   }

@@ -34,6 +34,11 @@
           </div>
         </div>
 
+        <div *ngIf="(authService.errorMessage$ | async) as errorMessage" 
+             class="error-text">
+          {{ errorMessage }}
+        </div>
+
         <button type="submit" [disabled]="!loginForm.form.valid" class="login-button">
           Login
         </button>

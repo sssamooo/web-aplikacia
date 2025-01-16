@@ -1,4 +1,3 @@
-// src/app/models/student.types.ts
 export interface Student {
   firstName: string;
   lastName: string;
@@ -13,10 +12,9 @@ export interface Student {
 }
 
 export const CLASSES = ['1.A', '1.B', '2.A', '2.B', '3.A', '3.B', '4.A', '4.B'];
-export const FIELDS_OF_STUDY = ['Informatika', 'Matematika', 'Fyzika', 'Chémia', 'Biológia'];
+export const FIELDS_OF_STUDY = ['Programovanie', 'Elektrotechnika', 'Umelá Inteligencia', 'Moderné technológie'];
 export const GENDERS = ['Muž', 'Žena'];
 
-// Mock data
 export const INITIAL_STUDENTS: Student[] = [
   {
     firstName: 'Peter',
@@ -24,7 +22,7 @@ export const INITIAL_STUDENTS: Student[] = [
     dateOfBirth: new Date('2000-05-15'),
     averageGrade: 1.5,
     class: '3.A',
-    fieldOfStudy: 'Informatika',
+    fieldOfStudy: 'Programovanie',
     gender: 'Muž',
     disabled: false,
     info: 'Výborný študent v programovaní',
@@ -36,7 +34,7 @@ export const INITIAL_STUDENTS: Student[] = [
     dateOfBirth: new Date('2001-03-22'),
     averageGrade: 1.2,
     class: '2.B',
-    fieldOfStudy: 'Matematika',
+    fieldOfStudy: 'Elektrotechnika',
     gender: 'Žena',
     disabled: false,
     info: 'Víťazka matematickej olympiády',
@@ -48,7 +46,7 @@ export const INITIAL_STUDENTS: Student[] = [
     dateOfBirth: new Date('2000-11-08'),
     averageGrade: 2.1,
     class: '4.A',
-    fieldOfStudy: 'Fyzika',
+    fieldOfStudy: 'Programovanie',
     gender: 'Muž',
     disabled: true,
     info: 'Prestup z inej školy',
@@ -60,7 +58,7 @@ export const INITIAL_STUDENTS: Student[] = [
     dateOfBirth: new Date('2002-03-19'),
     averageGrade: 1.9,
     class: '2.D',
-    fieldOfStudy: 'Chémia',
+    fieldOfStudy: 'Elektrotechnika',
     gender: 'Žena',
     disabled: false,
     info: 'Obľúbená medzi spolužiakmi a učiteľmi',
@@ -72,7 +70,7 @@ export const INITIAL_STUDENTS: Student[] = [
     dateOfBirth: new Date('2000-10-05'),
     averageGrade: 4.5,
     class: '1.A',
-    fieldOfStudy: 'Fyzika',
+    fieldOfStudy: 'Programovanie',
     gender: 'Muž',
     disabled: true,
     info: 'Študent s pomalším tempom učenia, ale veľkou snahou',
@@ -96,7 +94,7 @@ export const INITIAL_STUDENTS: Student[] = [
     dateOfBirth: new Date('2001-01-14'),
     averageGrade: 2.8,
     class: '4.D',
-    fieldOfStudy: 'História',
+    fieldOfStudy: 'Umelá Inteligencia',
     gender: 'Muž',
     disabled: false,
     info: 'Zaujíma sa o stredoveké dejiny',
@@ -108,7 +106,7 @@ export const INITIAL_STUDENTS: Student[] = [
     dateOfBirth: new Date('1998-11-07'),
     averageGrade: 2.1,
     class: '3.C',
-    fieldOfStudy: 'Fyzika',
+    fieldOfStudy: 'Programovanie',
     gender: 'Muž',
     disabled: false,
     info: 'Aktívny účastník fyzikálnych olympiád',
